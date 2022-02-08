@@ -3,7 +3,7 @@
 import os
 from dotenv import load_dotenv
 import ftplib
-import mysql.connector
+#  import mysql.connector
 import logging
 import time
 
@@ -64,8 +64,8 @@ count = ftp_dir(ftp, src_mysql_dir, mysql_upload_dir)
 logging.info(f"Transferred {count[0]} sql files in {count[1]} seconds to remote server: {mysql_upload_dir}.")
 
 #  Player Images
-count = ftp_dir(ftp, person_image_dir, player_image_upload_dir)
-logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {player_image_upload_dir}.")
+#count = ftp_dir(ftp, person_image_dir, player_image_upload_dir)
+#logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {player_image_upload_dir}.")
 
 # League Images
 count = ftp_dir(ftp, league_image_dir, league_image_upload_dir)
