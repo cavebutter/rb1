@@ -1,4 +1,4 @@
---Overall split_id=1
+-- Overall split_id=1
 DROP TABLE IF EXISTS CalcPitching;
 CREATE TABLE IF NOT EXISTS CalcPitching (pit_id INT AUTO_INCREMENT PRIMARY KEY)
 SELECT
@@ -78,13 +78,13 @@ SELECT
     INNER JOIN parks AS p ON t.park_id=p.park_id
 WHERE i.split_id=1 AND i.league_id<>0 AND i.team_id<>0;
 
---Adds INDEX
+-- Adds INDEX
 ALTER TABLE CalcPitching
 ADD INDEX pit_ix1 (year),
 ADD INDEX pit_ix2 (team_id),
 ADD INDEX pit_ix3 (player_id);
 
---VS Left split_id=2
+-- VS Left split_id=2
 DROP TABLE IF EXISTS CalcPitching_L;
 CREATE TABLE IF NOT EXISTS CalcPitching_L (pit_id INT AUTO_INCREMENT PRIMARY KEY)
 
@@ -165,13 +165,13 @@ SELECT
     INNER JOIN parks AS p ON t.park_id=p.park_id
 WHERE i.split_id=2 AND i.league_id<>0 AND i.team_id<>0;
 
---Adds INDEX
+-- Adds INDEX
 ALTER TABLE CalcPitching_L
 ADD INDEX pit_ix1 (year),
 ADD INDEX pit_ix2 (team_id),
 ADD INDEX pit_ix3 (player_id);
 
---Right split_id=3
+-- Right split_id=3
 DROP TABLE IF EXISTS CalcPitching_R;
 CREATE TABLE IF NOT EXISTS CalcPitching_R (pit_id INT AUTO_INCREMENT PRIMARY KEY)
 SELECT
@@ -251,7 +251,7 @@ SELECT
     INNER JOIN parks AS p ON t.park_id=p.park_id
 WHERE i.split_id=3 AND i.league_id<>0 AND i.team_id<>0;
 
---Adds INDEX
+-- Adds INDEX
 ALTER TABLE CalcPitching_R
 ADD INDEX pit_ix1 (year),
 ADD INDEX pit_ix2 (team_id),

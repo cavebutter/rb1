@@ -1,7 +1,6 @@
---Calculated batting stats for OOTP
---Overall stats - split_id=1
-    DROP TABLE IF EXISTS CalcBatting;
-    CREATE TABLE IF NOT EXISTS CalcBatting (
+-- Overall stats - split_id=1
+DROP TABLE IF EXISTS CalcBatting;
+CREATE TABLE IF NOT EXISTS CalcBatting (
     bat_id INT AUTO_INCREMENT PRIMARY KEY)
     SELECT b.year
     , b.level_id
@@ -48,7 +47,7 @@
     FROM
       players_career_batting_stats b
       INNER JOIN teams t ON b.team_id=t.team_id
-      --INNER JOIN team_relations AS tr ON b.team_id=tr.team_id AND b.league_id=tr.league_id
+      -- INNER JOIN team_relations AS tr ON b.team_id=tr.team_id AND b.league_id=tr.league_id
       INNER JOIN tblRunValues2 r ON b.year=r.year AND b.league_id=r.league_id AND b.sub_league_id=r.sub_league_id
       INNER JOIN LeagueRunsPerOut lro ON b.year=lro.year AND b.league_id=lro.league_id AND b.sub_league_id=lro.sub_league_id
       INNER JOIN parks p ON t.park_id=p.park_id
@@ -63,9 +62,9 @@ ALTER TABLE CalcBatting
     ;
 
 
---Vs Left stats - split_id=2
-    DROP TABLE IF EXISTS CalcBatting_L;
-    CREATE TABLE IF NOT EXISTS CalcBatting_L (
+-- Vs Left stats - split_id=2
+DROP TABLE IF EXISTS CalcBatting_L;
+CREATE TABLE IF NOT EXISTS CalcBatting_L (
     bat_id INT AUTO_INCREMENT PRIMARY KEY)
     SELECT b.year
     , b.level_id
@@ -111,14 +110,14 @@ ALTER TABLE CalcBatting
     FROM
       players_career_batting_stats b
       INNER JOIN teams t ON b.team_id=t.team_id
-      --INNER JOIN team_relations AS tr ON b.team_id=tr.team_id AND b.league_id=tr.league_id
+      -- INNER JOIN team_relations AS tr ON b.team_id=tr.team_id AND b.league_id=tr.league_id
       INNER JOIN tblRunValues2 r ON b.year=r.year AND b.league_id=r.league_id AND b.sub_league_id=r.sub_league_id
       INNER JOIN LeagueRunsPerOut lro ON b.year=lro.year AND b.league_id=lro.league_id AND b.sub_league_id=lro.sub_league_id
       INNER JOIN parks p ON t.park_id=p.park_id
       INNER JOIN sub_league_history_batting slg ON b.sub_league_id=slg.sub_league_id AND b.league_id=slg.league_id AND b.year=slg.year
     WHERE b.ab<>0 AND b.split_id=2 AND b.league_id<>0 AND b.team_id<>0
     ORDER BY b.player_id, b.year;
---Add indexes
+-- Add indexes
 ALTER TABLE CalcBatting_L
     ADD INDEX cb_ix1 (year),
     ADD INDEX cb_ix2 (team_id),
@@ -126,9 +125,9 @@ ALTER TABLE CalcBatting_L
     ADD INDEX cb_ix4 (league_id)
     ;
 
---VS Right stats - split_id=3
-    DROP TABLE IF EXISTS CalcBatting_R;
-    CREATE TABLE IF NOT EXISTS CalcBatting_R (
+-- VS Right stats - split_id=3
+DROP TABLE IF EXISTS CalcBatting_R;
+CREATE TABLE IF NOT EXISTS CalcBatting_R (
     bat_id INT AUTO_INCREMENT PRIMARY KEY)
     SELECT b.year
     , b.level_id
@@ -174,14 +173,14 @@ ALTER TABLE CalcBatting_L
     FROM
       players_career_batting_stats b
       INNER JOIN teams t ON b.team_id=t.team_id
-      --INNER JOIN team_relations AS tr ON b.team_id=tr.team_id AND b.league_id=tr.league_id
+      -- INNER JOIN team_relations AS tr ON b.team_id=tr.team_id AND b.league_id=tr.league_id
       INNER JOIN tblRunValues2 r ON b.year=r.year AND b.league_id=r.league_id AND b.sub_league_id=r.sub_league_id
       INNER JOIN LeagueRunsPerOut lro ON b.year=lro.year AND b.league_id=lro.league_id AND b.sub_league_id=lro.sub_league_id
       INNER JOIN parks p ON t.park_id=p.park_id
       INNER JOIN sub_league_history_batting slg ON b.sub_league_id=slg.sub_league_id AND b.league_id=slg.league_id AND b.year=slg.year    WHERE b.ab<>0 AND b.split_id=3 AND b.league_id<>0 AND b.team_id<>0
     ORDER BY b.player_id, b.year;
 
---Add indexes
+-- Add indexes
 ALTER TABLE CalcBatting_R
     ADD INDEX cb_ix1 (year),
     ADD INDEX cb_ix2 (team_id),

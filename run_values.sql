@@ -16,10 +16,18 @@ UPDATE teams
 SET parent_team_id=team_id
 WHERE level=1;
 
+-- Add subleague to players_career_batting_stats
+ALTER TABLE players_career_batting_stats
+ADD sub_league_id INT;
+
 -- Populate sub_league column in players_career_batting_stats
 UPDATE players_career_batting_stats AS b
 INNER JOIN team_relations AS t ON b.league_id=t.league_id AND b.team_id=t.team_id
 SET b.sub_league_id=t.sub_league_id;
+
+-- Add subleague to players_career_pitching_stats
+ALTER TABLE players_career_pitching_stats
+ADD sub_league_id INT;
 
 -- Same thing for players_career_pitching_stats
 

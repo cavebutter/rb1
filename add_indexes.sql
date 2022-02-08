@@ -15,8 +15,6 @@ ALTER TABLE `players_career_batting_stats` ADD INDEX `pcbs_ix1` (`league_id`);
 
 ALTER TABLE `players_career_fielding_stats` ADD INDEX `pcfs_ix1` (`league_id`);
 
-ALTER TABLE `players_individual_batting_stats` ADD INDEX `pibs_ix1` (`opponent_id`);
-
 ALTER TABLE `games` ADD INDEX `gix1` (`home_team`);
 ALTER TABLE `games` ADD INDEX `gix2` (`away_team`);
 

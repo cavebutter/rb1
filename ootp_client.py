@@ -7,7 +7,7 @@ import ftplib
 import logging
 import time
 
-logging.basicConfig(filename='etl.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='etl.log', filemode='w', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger().setLevel(logging.DEBUG)
 load_dotenv()
 
@@ -49,28 +49,29 @@ def ftp_dir(ftp, src_dir, dest_dir):
     elapsed_time = round(toc - tic,2)
     return (count, elapsed_time)
 
+if __name__ == '__main__':
 
-#  FTP the files
-try:
-    ftp = ftplib.FTP(server_host)
-    ftp.login(server_user, server_pass)
-    ftp.set_pasv(False)
-    logging.debug(f"Successful connection to remote ftp server.")
-except Exception as e:
-    logging.error(f"FTP connection error occurred: ", exc_info=True)
+    #  FTP the files
+    try:
+        ftp = ftplib.FTP(server_host)
+        ftp.login(server_user, server_pass)
+        ftp.set_pasv(False)
+        logging.debug(f"Successful connection to remote ftp server.")
+    except Exception as e:
+        logging.error(f"FTP connection error occurred: ", exc_info=True)
 
-#  MySQL Files
-count = ftp_dir(ftp, src_mysql_dir, mysql_upload_dir)
-logging.info(f"Transferred {count[0]} sql files in {count[1]} seconds to remote server: {mysql_upload_dir}.")
+    #  MySQL Files
+    count = ftp_dir(ftp, src_mysql_dir, mysql_upload_dir)
+    logging.info(f"Transferred {count[0]} sql files in {count[1]} seconds to remote server: {mysql_upload_dir}.")
 
-#  Player Images
-#count = ftp_dir(ftp, person_image_dir, player_image_upload_dir)
-#logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {player_image_upload_dir}.")
+    #  Player Images
+    #count = ftp_dir(ftp, person_image_dir, player_image_upload_dir)
+    #logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {player_image_upload_dir}.")
 
-# League Images
-count = ftp_dir(ftp, league_image_dir, league_image_upload_dir)
-logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {league_image_upload_dir}.")
+    # League Images
+    count = ftp_dir(ftp, league_image_dir, league_image_upload_dir)
+    logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {league_image_upload_dir}.")
 
-#  Team Images
-count = ftp_dir(ftp, team_logo_dir, team_images_upload_dir)
-logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {team_images_upload_dir}.")
+    #  Team Images
+    count = ftp_dir(ftp, team_logo_dir, team_images_upload_dir)
+    logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {team_images_upload_dir}.")
