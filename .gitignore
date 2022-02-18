@@ -4,3 +4,4 @@ etl.log
 /venv
 db.log
 /sql_reference
+/images

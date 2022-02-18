@@ -10,7 +10,7 @@
 --    # inserted a row into `teams` for Free Agents.  This makes it easier to find FA's through queries
 --    # `players_career_batting` and `players_career_pitching` are updated to include a player's subleague in that table.  Makes stats calcs easier
 
-INSERT INTO teams (team_id, name, abbr, league_id, level) VALUES (0,'Free Agent', 'FA', 100,1);
+INSERT INTO teams (team_id, name, nickname, abbr, league_id, level) VALUES (0,'Free Agent', '', 'FA', 100,1);
 -- UPDATE parent_id for ML teams to be their own parents
 UPDATE teams
 SET parent_team_id=team_id

@@ -7,7 +7,7 @@ import ftplib
 import logging
 import time
 
-logging.basicConfig(filename='etl.log', filemode='w', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='etl.log', filemode='a', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger().setLevel(logging.DEBUG)
 load_dotenv()
 
@@ -64,9 +64,11 @@ if __name__ == '__main__':
     count = ftp_dir(ftp, src_mysql_dir, mysql_upload_dir)
     logging.info(f"Transferred {count[0]} sql files in {count[1]} seconds to remote server: {mysql_upload_dir}.")
 
+#  TODO Come back and change the upload directories for all images to the static image sub-dir for the flask project
+#  TODO Get a list of all files in the target upload directories and compare to source directory.  Transfer only new pics
     #  Player Images
-    #count = ftp_dir(ftp, person_image_dir, player_image_upload_dir)
-    #logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {player_image_upload_dir}.")
+    count = ftp_dir(ftp, person_image_dir, player_image_upload_dir)
+    logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {player_image_upload_dir}.")
 
     # League Images
     count = ftp_dir(ftp, league_image_dir, league_image_upload_dir)
