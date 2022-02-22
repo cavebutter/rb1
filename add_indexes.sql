@@ -63,6 +63,9 @@ CREATE TABLE IF NOT EXISTS `pitching_focus` (
 
 INSERT INTO `pitching_focus` VALUES (0, 'Power'), (1, 'Finesse'), (2, 'Groundball'), (3, 'Neutral');
 
+ALTER TABLE players_games_batting ADD INDEX 'pgb_ix_1' ('team_id');
+ALTER TABLE players_games_batting ADD INDEX 'pgb_ix_2' ('year');
+ALTER TABLE players_games_batting ADD INDEX 'pgb_ix_3' ('player_id');
 
 
 
