@@ -10,7 +10,7 @@
 --    # inserted a row into `teams` for Free Agents.  This makes it easier to find FA's through queries
 --    # `players_career_batting` and `players_career_pitching` are updated to include a player's subleague in that table.  Makes stats calcs easier
 
-INSERT INTO teams (team_id, name, nickname, abbr, league_id, level) VALUES (0,'Free Agent', '', 'FA', 100,1);
+INSERT INTO teams (team_id, name, nickname, abbr, league_id, level) VALUES (0,'Free Agent',NULL, 'FA', 100,1);
 -- UPDATE parent_id for ML teams to be their own parents
 UPDATE teams
 SET parent_team_id=team_id
@@ -246,15 +246,3 @@ FROM  (
       ) AS x
         INNER JOIN FIPConstant AS f ON x.year=f.year AND x.league_id=f.league_id;
 
--- Create positions table
-DROP TABLE IF EXISTS positions;
-CREATE TABLE IF NOT EXISTS positions
-   (
-     position   TINYINT,
-     role       TINYINT,
-     pos_name   VARCHAR (10),
-     PRIMARY KEY (position, role)
-    );
-
-   INSERT INTO positions VALUES (1,11, 'SP'), (1,12,'RP'), (1,13,'CL'), (2,0,'C'), (3,0,'1B'), (4,0,'2B'), (5,0,'3B'), (6,0,'SS'), (7,0,'LF'), (8,0,'CF'), (9,0,'RF'), (10,0,'DH')
-   ;

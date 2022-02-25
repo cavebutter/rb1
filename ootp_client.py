@@ -66,6 +66,7 @@ if __name__ == '__main__':
 
 #  TODO Come back and change the upload directories for all images to the static image sub-dir for the flask project
 #  TODO Get a list of all files in the target upload directories and compare to source directory.  Transfer only new pics
+#  TODO create a db user for production that only has read rights
     #  Player Images
     count = ftp_dir(ftp, person_image_dir, player_image_upload_dir)
     logging.info(f"Transferred {count[0]} image files in {count[1]} seconds to remote server: {player_image_upload_dir}.")
