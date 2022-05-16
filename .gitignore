@@ -5,3 +5,4 @@ etl.log
 db.log
 /sql_reference
 /images
+/local_sql_files

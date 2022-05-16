@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS CalcBatting (
     , @woba := round((r.wobaBB*(b.bb-b.ibb) + r.wobaHB*b.hp + r.woba1B*(b.h-b.d-b.t-b.hr) + r.woba2B*b.d + r.woba3B*b.t + r.wobaHR*b.hr) / (b.ab+b.bb-b.ibb+b.sf+b.hp),3) as woba
     , @wRAA := round(((@woba-r.woba)/r.wOBAscale)*@PA,1) as wRAA
     , round((((@woba-r.woba)/r.wOBAscale)+(lro.totr/lro.totpa))*@PA,1) as wRC
-    , ROUND((((@wRAA/@PA + lro.RperPA) + (lro.RperPA - p.avg*lro.RperPA))/(slg.slg_r/slg.slg_pa))*100,0) as 'wRC+'
+    , ROUND((((@wRAA/@PA + lro.RperPA) + (lro.RperPA - p.avg*lro.RperPA))/(slg.slg_r/slg.slg_pa))*100,0) as wRCplus
 
     FROM
       players_career_batting_stats b
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS CalcBatting_L (
     , @woba := round((r.wobaBB*(b.bb-b.ibb) + r.wobaHB*b.hp + r.woba1B*(b.h-b.d-b.t-b.hr) + r.woba2B*b.d + r.woba3B*b.t + r.wobaHR*b.hr) / (b.ab+b.bb-b.ibb+b.sf+b.hp),3) as woba
     , @wRAA := round(((@woba-r.woba)/r.wOBAscale)*@PA,1) as wRAA
     , round((((@woba-r.woba)/r.wOBAscale)+(lro.totr/lro.totpa))*@PA,1) as wRC
-    , ROUND((((@wRAA/@PA + lro.RperPA) + (lro.RperPA - p.avg*lro.RperPA))/(slg.slg_r/slg.slg_pa))*100,0) as 'wRC+'
+    , ROUND((((@wRAA/@PA + lro.RperPA) + (lro.RperPA - p.avg*lro.RperPA))/(slg.slg_r/slg.slg_pa))*100,0) as wRCplus
     FROM
       players_career_batting_stats b
       INNER JOIN teams t ON b.team_id=t.team_id
@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS CalcBatting_R (
     , @woba := round((r.wobaBB*(b.bb-b.ibb) + r.wobaHB*b.hp + r.woba1B*(b.h-b.d-b.t-b.hr) + r.woba2B*b.d + r.woba3B*b.t + r.wobaHR*b.hr) / (b.ab+b.bb-b.ibb+b.sf+b.hp),3) as woba
     , @wRAA := round(((@woba-r.woba)/r.wOBAscale)*@PA,1) as wRAA
     , round((((@woba-r.woba)/r.wOBAscale)+(lro.totr/lro.totpa))*@PA,1) as wRC
-    , ROUND((((@wRAA/@PA + lro.RperPA) + (lro.RperPA - p.avg*lro.RperPA))/(slg.slg_r/slg.slg_pa))*100,0) as 'wRC+'
+    , ROUND((((@wRAA/@PA + lro.RperPA) + (lro.RperPA - p.avg*lro.RperPA))/(slg.slg_r/slg.slg_pa))*100,0) as wRCplus
     FROM
       players_career_batting_stats b
       INNER JOIN teams t ON b.team_id=t.team_id
